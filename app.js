@@ -1,13 +1,12 @@
+require("dotenv").config();
 const dns = require("dns");
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
-if (process.env.NODE_ENV != "production") {
-    require("dotenv").config();
-}
+
 
 
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
 
 
@@ -108,5 +107,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(port, () => {
-    console.log("server is listening on port 8080");
+    console.log(`server is listening on port ${port}`);
 });
